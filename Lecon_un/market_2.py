@@ -11,7 +11,7 @@ class Market:
         today = datetime.datetime.today()
         if datetime.datetime.weekday(today) == 0:
             self.lundi()
-        elif datetime.datetime.weekday(today) in (1, 3):
+        elif datetime.datetime.weekday(today) in range(1, 4):
             self.mardi_jeudi()
         else:
             self.vendredi_dimanche()
