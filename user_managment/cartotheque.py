@@ -29,7 +29,7 @@ class Cartotheque:
             self.data_base_des_users.append({str(user_id): user})
             print('Пользователь успешно добавлен!')
 
-    def delete_user(self, info_input):
+    def ajouter_status_user(self, info_input, change_code):
         list_des_telephones = []
         list_des_email = []
         list_des_id = []
@@ -46,8 +46,14 @@ class Cartotheque:
                 for element in list_des_email:
                     if element == info_input:
                         temp_user_id = list_des_email.index(element)
-                        self.data_base_des_users.pop(temp_user_id)
-                        print('Аккаунт успешно удален!')
+                        if change_code == 0:
+                            self.data_base_des_users[temp_user_id][
+                                f'{temp_user_id + 1}'].status = 0
+                            print('Аккаунт успешно деактивирован!')
+                        elif change_code == 1:
+                            self.data_base_des_users[temp_user_id][
+                                f'{temp_user_id + 1}'].status = 1
+                            print('Аккаунт успешно активирован!')
         elif '+38' in info_input:
             if info_input not in list_des_telephones:
                 print('Пользователь с таким телефоном не найден!')
@@ -55,8 +61,14 @@ class Cartotheque:
                 for element in list_des_telephones:
                     if element == info_input:
                         temp_user_id = list_des_telephones.index(element)
-                        self.data_base_des_users.pop(temp_user_id)
-                        print('Аккаунт успешно удален!')
+                        if change_code == 0:
+                            self.data_base_des_users[temp_user_id][
+                                f'{temp_user_id + 1}'].status = 0
+                            print('Аккаунт успешно деактивирован!')
+                        elif change_code == 1:
+                            self.data_base_des_users[temp_user_id][
+                                f'{temp_user_id + 1}'].status = 1
+                            print('Аккаунт успешно активирован!')
         elif info_input.isdigit():
             if info_input not in list_des_id:
                 print('Пользователь с таким id не найден!')
@@ -64,8 +76,14 @@ class Cartotheque:
                 for element in list_des_id:
                     if element == info_input:
                         temp_user_id = list_des_id.index(element)
-                        self.data_base_des_users.pop(temp_user_id)
-                        print('Аккаунт успешно удален!')
+                        if change_code == 0:
+                            self.data_base_des_users[temp_user_id][
+                                f'{temp_user_id + 1}'].status = 0
+                            print('Аккаунт успешно деактивирован!')
+                        elif change_code == 1:
+                            self.data_base_des_users[temp_user_id][
+                                f'{temp_user_id + 1}'].status = 1
+                            print('Аккаунт успешно активирован!')
         else:
             print('По заданному запросу информация не найдена!')
 
