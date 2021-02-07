@@ -16,10 +16,13 @@ for element in list_des_users:
 current_cartotheque = cartotheque.Cartotheque(list_des_users)
 
 while True:
-    user_input_1 = input('S.P.Q.R.\n1 - добавить пользователя\n'
+    user_input_1 = input('S.P.Q.R.\n'
+                         '______________________________\n'
+                         '1 - добавить пользователя\n'
                          '2 - открыть картотеку\n'
                          '3 - удалить пользователя\n'
                          '0 - выход\n'
+                         '______________________________\n'
                          'Ваш выбор: ')
 
     if user_input_1 == '1':
