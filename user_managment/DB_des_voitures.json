@@ -1,0 +1,20 @@
+[
+    {
+        "1": {
+            "marka": "Citroen",
+            "model": "C3",
+            "numero": "ai8897ix",
+            "probeg": "19733",
+            "status": 1
+        }
+    },
+    {
+        "2": {
+            "marka": "Fiat",
+            "model": "sedici",
+            "numero": "ai3286ea",
+            "probeg": "215000",
+            "status": 1
+        }
+    }
+]

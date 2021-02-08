@@ -1,9 +1,11 @@
 import user
+import voiture
 
 
 class Cartotheque:
-    def __init__(self, data_base_des_users):
+    def __init__(self, data_base_des_users, data_base_des_voitures):
         self.data_base_des_users = data_base_des_users
+        self.data_base_des_voitures = data_base_des_voitures
 
     def plus_user(self, user: user.User):
         list_des_telephones = []
@@ -91,6 +93,36 @@ class Cartotheque:
         if len(self.data_base_des_users) != 0:
             print('\n____________В системе зарегистрированы:____________\n')
             for element in self.data_base_des_users:
+                for k, v in element.items():
+                    print(f'ID: {k}\n{str(v)}\n')
+            print('___________________________________________________')
+        else:
+            print('Картотека пуста!')
+
+    def plus_voiture(self, voiture: voiture.Voiture):
+        list_des_numeros = []
+        for element in self.data_base_des_voitures:
+            for v in element.values():
+                list_des_numeros.append(v.numero)
+
+        if voiture.numero in list_des_numeros:
+            print('Автомобиль с таким гос. номером уже зарегистрирован!')
+        else:
+            if len(self.data_base_des_voitures) == 0:
+                voiture_id = 1
+            else:
+                list_des_id = []
+                for element in self.data_base_des_voitures:
+                    for k in element.keys():
+                        list_des_id.append(k)
+                voiture_id = int(list_des_id[-1]) + 1
+            self.data_base_des_voitures.append({str(voiture_id): voiture})
+            print('Автомобиль успешно добавлен!')
+
+    def get_all_voitures(self):
+        if len(self.data_base_des_voitures) != 0:
+            print('\n____________В системе зарегистрированы:____________\n')
+            for element in self.data_base_des_voitures:
                 for k, v in element.items():
                     print(f'ID: {k}\n{str(v)}\n')
             print('___________________________________________________')
