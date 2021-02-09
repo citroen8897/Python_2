@@ -27,7 +27,9 @@ class Products(User):
                                   ['арбузы', 20]]
 
     def catalogue(self):
-        print('Список товаров:\n1 - яблоки\n2 - груши\n3 - арбузы\n')
+        print(f'Список товаров:\n1 - {self.list_des_products[0][0]}\n'
+              f'2 - {self.list_des_products[1][0]}\n'
+              f'3 - {self.list_des_products[2][0]}\n')
 
     def plus_basket(self):
         user_input_1 = input('Для добавления в корзину, введите цифровой код '
