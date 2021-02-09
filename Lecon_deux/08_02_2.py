@@ -40,14 +40,27 @@ class Products(User):
                 self.basket.append(self.list_des_products[int(i) - 1])
             else:
                 print('Неверный выбор!')
+        self.get_basket()
+
+        user_input_2 = input('Удалить товар из корзины?')
+        if user_input_2 == 'Y':
+            temp_list_basket = self.basket.copy()
+            user_input_3 = input('Через запятую введите номера товаров для '
+                                 'удаления: ')
+            for j in user_input_3.split(','):
+                self.basket.remove(temp_list_basket[int(j) - 1])
+
+        self.get_basket()
+        self.history_des_achetes.append(self.basket.copy())
+        self.basket.clear()
+
+    def get_basket(self):
         if len(self.basket) != 0:
             print('Заказ оформлен!\nВаш заказ:')
             j = 1
             for element in self.basket:
                 print(f'{j}. {element[0]}')
                 j += 1
-            self.history_des_achetes.append(self.basket.copy())
-            self.basket.clear()
 
 
 print('Приветствуем Вас в нашем магазине!\nДля входа в магазин, пожалуйста '
