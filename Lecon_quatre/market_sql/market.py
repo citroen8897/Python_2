@@ -1,12 +1,12 @@
 import market_get_product
+import market_get_user
 
 
 class User:
     def __init__(self, name, password):
-        self.name = name.title()
+        self.name = name
         self.password = password
-        self.list_des_users = [['Иван', '1234'], ['Владимир', '0000'],
-                               ['Василий', '9876']]
+        self.list_des_users = market_get_user.users_de_data_base()
         self.basket = []
         self.history_des_achetes = []
 
@@ -33,6 +33,12 @@ class Products(User):
         for element in self.list_des_products:
             print(f'{self.list_des_products.index(element) + 1} - '
                   f'{element[0]}   {element[1]} грн/кг')
+
+    def get_users_all(self):
+        print('Список зарегистрированных пользователей:\n')
+        for element in self.list_des_users:
+            print(f'{self.list_des_users.index(element) + 1} - '
+                  f'login: {element[0]}   password: {element[1]}')
 
     def plus_basket(self):
         user_input_1 = input('Для добавления в корзину, введите цифровой код '
@@ -78,6 +84,7 @@ if current_user.autorization():
               '1 - посмотреть каталог\n'
               '2 - добавить товар в корзину\n'
               '3 - посмотреть историю заказов\n'
+              '9 - посмотреть список пользователей\n'
               '0 - выход\n'
               '____________________________________\n')
         user_input_main = input('Введите цифровую команду: ')
@@ -88,6 +95,8 @@ if current_user.autorization():
             current_user.plus_basket()
         elif user_input_main == '3':
             current_user.history_de_user()
+        elif user_input_main == '9':
+            current_user.get_users_all()
         elif user_input_main == '0':
             input('Для выхода нажмите Enter...')
             break
