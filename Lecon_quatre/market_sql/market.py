@@ -45,7 +45,8 @@ class Products(User):
                              'товара через запятую\nВыберите товары которые '
                              'нужно оформить: ')
         for i in user_input_1.split(','):
-            if i in ['1', '2', '3', '4', '5']:
+            if i in [str(j) for j in range(1, len(self.list_des_products) + 1)
+                     ]:
                 self.basket.append(self.list_des_products[int(i) - 1])
             else:
                 print('Неверный выбор!')
@@ -74,7 +75,7 @@ class Products(User):
 
 print('Приветствуем Вас в нашем магазине!\nДля входа в магазин, пожалуйста '
       'авторизируйтесь...')
-current_user = Products(input('Введите Ваше имя: '),
+current_user = Products(input('Введите Ваш логин: '),
                         input('Введите Ваш пароль: '))
 
 if current_user.autorization():
