@@ -1,8 +1,10 @@
 import mysql.connector
 from mysql.connector import Error
+import password_generator
 
 user_login = input('Введите логин: ')
 user_password = input('Введите пароль: ')
+user_password = password_generator.generator_de_password(user_password)
 user_nom = input('Введите имя: ')
 user_prenom = input('Введите фамилию: ')
 user_bth_jour = int(input('Введите день рождения: '))

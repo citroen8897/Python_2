@@ -1,5 +1,6 @@
 import market_get_product
 import market_get_user
+import password_generator
 
 
 class User:
@@ -75,8 +76,11 @@ class Products(User):
 
 print('Приветствуем Вас в нашем магазине!\nДля входа в магазин, пожалуйста '
       'авторизируйтесь...')
-current_user = Products(input('Введите Ваш логин: '),
-                        input('Введите Ваш пароль: '))
+
+user_login = input('Введите Ваш логин: ')
+user_password = input('Введите пароль: ')
+user_password = password_generator.generator_de_password(user_password)
+current_user = Products(user_login, user_password)
 
 if current_user.autorization():
     while True:
