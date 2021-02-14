@@ -23,4 +23,12 @@ def get_zakaz(id_user):
         conn.close()
         cursor.close()
 
+    temp_1 = [list_des_achetes[0]]
+    for i in list_des_achetes[1:]:
+        if i[0] == temp_1[-1][0]:
+            temp_1[-1].append(i[1])
+        else:
+            temp_1.append(i)
+    list_des_achetes = temp_1
+
     return list_des_achetes

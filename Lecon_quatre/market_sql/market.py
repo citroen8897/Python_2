@@ -25,7 +25,8 @@ class User:
 
     def history_de_user(self):
         for element in get_history_de_user.get_zakaz(self.user_id):
-            print(element)
+            print(f'Номер заказа: {element[0]}\n'
+                  f'Состав заказа: {element[1:]}\n')
 
 
 class Products(User):
