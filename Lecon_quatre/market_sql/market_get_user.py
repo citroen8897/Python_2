@@ -4,6 +4,7 @@ from mysql.connector import Error
 
 def users_de_data_base():
     list_des_users = []
+    list_des_users_id = []
     try:
         conn = mysql.connector.connect(user='root',
                                        host='localhost',
@@ -14,8 +15,8 @@ def users_de_data_base():
             cursor.execute("SELECT * FROM market_10_02")
             row = cursor.fetchone()
             while row is not None:
-                # print(f'id: {row[0]}    login: {row[1]}    password: {row[2]}')
                 list_des_users.append([row[1], row[2]])
+                list_des_users_id.append([row[0], row[1], row[2]])
                 row = cursor.fetchone()
     except Error as error:
         print(error)
@@ -23,4 +24,4 @@ def users_de_data_base():
         conn.close()
         cursor.close()
 
-    return list_des_users
+    return list_des_users, list_des_users_id

@@ -1,18 +1,22 @@
 import market_get_product
 import market_get_user
 import password_generator
+import plus_zakaz_history
+import get_history_de_user
 
 
 class User:
     def __init__(self, name, password):
         self.name = name
         self.password = password
-        self.list_des_users = market_get_user.users_de_data_base()
+        self.list_des_users, self.list_des_users_id = \
+            market_get_user.users_de_data_base()
         self.basket = []
-        self.history_des_achetes = []
 
     def autorization(self):
         if [self.name, self.password] in self.list_des_users:
+            index_user = self.list_des_users.index([self.name, self.password])
+            self.user_id = self.list_des_users_id[index_user][0]
             print('Вы успешно авторизовались в системе!')
             return True
         else:
@@ -20,7 +24,7 @@ class User:
             return False
 
     def history_de_user(self):
-        for element in self.history_des_achetes:
+        for element in get_history_de_user.get_zakaz(self.user_id):
             print(element)
 
 
@@ -33,7 +37,7 @@ class Products(User):
         print('Список товаров:\n')
         for element in self.list_des_products:
             print(f'{self.list_des_products.index(element) + 1} - '
-                  f'{element[0]}   {element[1]} грн/кг')
+                  f'{element[1]}   {element[2]} грн/кг')
 
     def get_users_all(self):
         print('Список зарегистрированных пользователей:\n')
@@ -62,7 +66,12 @@ class Products(User):
                 self.basket.remove(temp_list_basket[int(j) - 1])
 
         self.get_basket()
-        self.history_des_achetes.append(self.basket.copy())
+        numero_de_zakaz = plus_zakaz_history.get_last_numero_de_zakaz()
+        for element in self.basket:
+            plus_zakaz_history.plus_product_history_de_user(numero_de_zakaz,
+                                                            element[0],
+                                                            element[1],
+                                                            self.user_id)
         self.basket.clear()
 
     def get_basket(self):
@@ -70,7 +79,7 @@ class Products(User):
             print('Заказ оформлен!\nВаш заказ:')
             j = 1
             for element in self.basket:
-                print(f'{j}. {element[0]}')
+                print(f'{j}. {element[1]}')
                 j += 1
 
 
